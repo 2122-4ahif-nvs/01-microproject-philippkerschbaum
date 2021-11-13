@@ -1,4 +1,4 @@
-# quarkus-4ahif-car-rental Project
+# soccerclub-microproject Project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 

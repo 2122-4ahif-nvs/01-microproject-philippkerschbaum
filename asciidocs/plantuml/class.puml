@@ -4,11 +4,12 @@ left to right direction
 
 class Club{
     -List<Team> teams
+    -String name
 }
 class Member{
     -String firstname
     -String lastname
-    -Team guest
+    -Team team
 }
 class Coach{
 
