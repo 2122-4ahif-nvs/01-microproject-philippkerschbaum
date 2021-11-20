@@ -3,25 +3,18 @@
 left to right direction
 
 class Club{
-    -List<Team> teams
     -String name
 }
+
+class Team{
+    -Club: club
+    -String name
+}
+
 class Member{
     -String firstname
     -String lastname
     -Team team
-}
-class Coach{
-
-}
-
-class Player{
-
-}
-class Team{
-    -List<Player> player
-    -Coach: coach
-    -Club: club
 }
 
 Club"1"-->"*"Team
