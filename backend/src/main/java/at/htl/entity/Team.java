@@ -1,8 +1,16 @@
 package at.htl.entity;
 
+import javax.persistence.*;
+
+@Entity
 public class Team {
+
+    @ManyToOne
     Club club;
     String name;
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int Id;
 
     public Team() {
     }

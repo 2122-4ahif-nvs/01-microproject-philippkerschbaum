@@ -1,9 +1,15 @@
 package at.htl.entity;
+import javax.persistence.*;
 
+@Entity
 public class Member {
     String firstname;
     String lastname;
+    @ManyToOne
     Team team;
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int Id;
 
     public Member() {
     }
