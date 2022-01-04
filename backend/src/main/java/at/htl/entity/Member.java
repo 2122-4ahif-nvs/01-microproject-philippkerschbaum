@@ -1,13 +1,18 @@
 package at.htl.entity;
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "SC_MEMBER")
 public class Member {
+
+    @Column(name = "M_FIRSTNAME")
     String firstname;
+
+    @Column(name = "M_LASTNAME")
     String lastname;
-    @ManyToOne
+    @ManyToOne @JoinColumn(name = "M_TEAM")
     Team team;
 
+    @Column(name = "M_ID")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int Id;
 

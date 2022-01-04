@@ -2,13 +2,17 @@ package at.htl.entity;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "SC_TEAM")
 public class Team {
 
+    @JoinColumn(name = "T_CLUB")
     @ManyToOne
     Club club;
+
+    @Column(name = "T_NAME")
     String name;
 
+    @Column(name = "T_ID")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int Id;
 
