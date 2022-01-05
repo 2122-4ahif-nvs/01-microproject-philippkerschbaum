@@ -1,0 +1,149 @@
+= Cheatsheet
+Philipp Kerschbaum
+1.0.0, 2021-01-05
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+== Validation
+Dient der Überprüfung auf ungültige Werte in Feldern
+
+=== Alternativen
+
+- Apache Validator
+
+=== Implementierung
+
+[source,java]
+.Club.java
+----
+@NotBlank(message="Clubname may not be blank") <1>
+@Column(name = "C_NAME")
+String name;
+----
+<1> Überprüft ob der String leer ist
+
+
+== Qute
+
+ist eine Templating Engine, die dazu dient z.B. html-templates zu erstellen welche dann leicht mit Daten befüllt werden können
+
+=== Alternativen
+
+- Angular
+- React
+
+=== Implementierung
+
+[source,java]
+.TeamResource
+----
+@Inject
+TeamRepository teamRepository;
+
+@CheckedTemplate
+public static class Templates {
+    public static native TemplateInstance team(Team team);
+    public static native TemplateInstance teamSimple(String name);
+}
+
+@Path("/simpleQute")
+@GET
+@Produces(MediaType.TEXT_PLAIN)
+public TemplateInstance getTxt(@QueryParam("name") String name){
+    return Templates.teamSimple(name);
+}
+
+@GET
+@Produces(MediaType.TEXT_HTML)
+public TemplateInstance get(@QueryParam("name")String name){
+    return Templates.team(teamRepository.getTeamByName(name));
+}
+
+@Path("/findAll")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public List<Team> findAll(){
+    return teamRepository.getAll();
+}
+----
+
+[source,html]
+.src/main/resources/templates/TeamResource/team.html
+----
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{team.name}</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>Team Information</h1>
+
+All informations about the Team {team.name}: <br>
+
+
+<table bordercolor="black">
+    <tr>
+        <td>Teamname</td>
+        <td>{team.name}</td>
+    </tr>
+    <tr>
+        <td>Club</td>
+        <td>{team.club.name}</td>
+    </tr>
+</table>
+</body>
+</html>
+----
+
+== gRPC
+
+gRPC ist ein google remote procedure call framework
+
+=== Alternativen
+- REST
+- MQTT
+
+=== Implementierung
+
+[source,text]
+.source/main/proto/helloworld.proto
+----
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "at.htl";
+option java_outer_classname = "HelloWorldProto";
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+----
+
+Damit die Klassen generiert werden
+----
+mvn compile
+----
