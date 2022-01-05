@@ -11,15 +11,14 @@ class Team{
     -String name
 }
 
-class Member{
+class Player{
+    -Team team
     -String firstname
     -String lastname
-    -Team team
 }
 
 Club"1"-->"*"Team
-Team"1"-->"*"Member
-Member --|> Coach
-Member --|> Player
+Team"1"-->"*"Player
+
 
 @enduml
