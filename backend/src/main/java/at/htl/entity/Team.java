@@ -2,11 +2,22 @@ package at.htl.entity;
 
 import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Team.findByName",
+                query = "select t from  SC_TEAM t where t.name=:TEAMNAME"
+        ),
+        @NamedQuery(
+                name = "Team.findAll",
+                query = "select t from SC_TEAM t"
+        )
+})
 @Entity(name = "SC_TEAM")
 public class Team {
 
+
     @JoinColumn(name = "T_CLUB")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     Club club;
 
     @Column(name = "T_NAME")

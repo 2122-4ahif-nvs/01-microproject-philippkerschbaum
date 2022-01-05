@@ -35,6 +35,10 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/team?name=test123
+GET http://localhost:8080/team/simpleQute?name=team123
+
+###
+
+GET http://localhost:8080/team?name=U17
 
 ###
