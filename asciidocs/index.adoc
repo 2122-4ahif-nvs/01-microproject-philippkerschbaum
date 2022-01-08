@@ -21,4 +21,4 @@ plantuml::plantuml/class.puml[]
 Ein Fussballverein bei dem Spieler und Trainer zu Teams hinzufügt werden können. Teams können zu Vereinen hinzugefügt werden.
 
 == Cheatsheet
-* link:https://github.com/2122-4ahif-nvs/01-microproject-philippkerschbaum/cheatsheet.html[CheatSheet]
+* link:https://2122-4ahif-nvs.github.io/01-microproject-philippkerschbaum/cheatsheet.html[CheatSheet]
