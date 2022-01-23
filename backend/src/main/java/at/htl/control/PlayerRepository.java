@@ -25,4 +25,13 @@ public class PlayerRepository {
                 .setParameter("TEAMNAME",name)
                 .getResultList();
     }
+
+    public List<Player> getAllPlayers(){
+        return em.createQuery("select p from SC_Player p ",Player.class).getResultList();
+    }
+
+    @Transactional
+    public void delete(Player player){
+        em.remove(player);
+    }
 }

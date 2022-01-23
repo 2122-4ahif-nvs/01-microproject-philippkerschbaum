@@ -147,3 +147,13 @@ Damit die Klassen generiert werden
 ----
 mvn compile
 ----
+
+== Security with .properties File
+
+=== Alternativen
+
+- Security with JPA
+
+=== Implementierung
+
+Implementiert in der PlayerResource.java Klasse
