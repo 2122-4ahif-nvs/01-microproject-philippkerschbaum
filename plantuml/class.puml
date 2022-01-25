@@ -1,0 +1,24 @@
+@startuml
+
+left to right direction
+
+class Club{
+    -String name
+}
+
+class Team{
+    -Club: club
+    -String name
+}
+
+class Player{
+    -Team team
+    -String firstname
+    -String lastname
+}
+
+Club"1"-->"*"Team
+Team"1"-->"*"Player
+
+
+@enduml
